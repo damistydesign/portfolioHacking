@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>root@damian:~$ - Hacker Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="public/style.css">
+</head>
+<body>
+<!-- 
+            What are you doing looking at my code? 
+Get out of here now, or I’ll pull your feet while you sleep -.-    
+-->
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="boot-sequence">
+            <div id="bootText" class="boot-text"></div>
+            <div class="boot-cursor">_</div>
+        </div>
+    </div>
+
+    <!-- Matrix Background -->
+    <canvas id="matrixCanvas" class="matrix-bg"></canvas>
+
+    <!-- Navigation -->
+    <nav class="nav-terminal">
+        <div class="nav-content">
+            <div class="nav-prompt">
+                <span class="user">root@damian</span><span class="separator">:</span><span class="path">~</span><span class="prompt">$</span>
+            </div>
+            <div class="nav-commands">
+                <span class="nav-cmd" data-target="hero">./start</span>
+                <span class="nav-cmd" data-target="about">whoami</span>
+                <span class="nav-cmd" data-target="projects">ls -la</span>
+                <span class="nav-cmd" data-target="skills">cat skills.txt</span>
+                <span class="nav-cmd" data-target="contact">ping damian.com</span>
+            </div>
+            <div class="mode-toggle">
+                <button id="modeToggle" class="toggle-btn">
+                    <span class="toggle-text">NORMAL_MODE</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="section hero-section active">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control close"></span>
+                        <span class="control minimize"></span>
+                        <span class="control maximize"></span>
+                    </div>
+                    <div class="terminal-title">Terminal - root@damian:~</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="prompt-line">
+                            <span class="user">root@damian</span><span class="separator">:</span><span class="path">~</span><span class="prompt">$</span>
+                        </span>
+                        <span id="loginCommand" class="typing-text"></span>
+                        <span class="cursor">_</span>
+                    </div>
+                    <div id="heroOutput" class="hero-output"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control close"></span>
+                        <span class="control minimize"></span>
+                        <span class="control maximize"></span>
+                    </div>
+                    <div class="terminal-title">whoami - User Information</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="about-content">
+                        <div class="about-image">
+                            <div class="image-placeholder glitch" data-text="[IMG]">
+                                <div class="glitch-layer"></div>
+                                <div class="glitch-layer"></div>
+                                <div class="glitch-layer"></div>
+                                <img src="public/images/profile.png" class="img__about">
+                            </div>
+                        </div>
+                        <div class="about-text">
+                            <div class="command-output">
+                                <div class="output-line">User: <span class="highlight">Damián</span></div>
+                                <div class="output-line">Role: <span class="highlight">Full Stack Developer & Ethical Hacker</span></div>
+                                <div class="output-line">Status: <span class="success">Online</span></div>
+                                <div class="output-line">Interests: <span class="highlight">Ethical Hacking, AI, Web Development</span></div>
+                                <div class="output-line">Location: <span class="highlight">Earth</span></div>
+                                <div class="output-line">Shell: <span class="highlight">/bin/zsh</span></div>
+                                <div class="output-line">Groups: <span class="highlight">developers, hackers, ai-enthusiasts</span></div>
+                                <br>
+                                <div class="output-line description">
+                                    Web developer passionate about technology and cybersecurity. Always looking for new challenges and opportunities to learn. Specialized in creating unique and secure digital experiences.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control close"></span>
+                        <span class="control minimize"></span>
+                        <span class="control maximize"></span>
+                    </div>
+                    <div class="terminal-title">ls -la /projects</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="projects-list">
+                        <div class="list-header">
+                            <span>permissions</span>
+                            <span>size</span>
+                            <span>date</span>
+                            <span>filename</span>
+                        </div>
+                        <div class="project-item" data-project="web-generator">
+                            <span class="permissions">-rwxr-xr-x</span>
+                            <span class="size">2.4K</span>
+                            <span class="date">Ago 26 2022</span>
+                            <span class="filename">DamixIa-WebGenerator.sh</span>
+                        </div>
+                        <div class="project-item" data-project="weather-app">
+                            <span class="permissions">-rwxr-xr-x</span>
+                            <span class="size">5.2K</span>
+                            <span class="date">Jul 8 2025</span>
+                            <span class="filename">weather-app.md</span>
+                        </div>
+                        <div class="project-item" data-project="simplefolio">
+                            <span class="permissions">-rwxr-xr-x</span>
+                            <span class="size">3.7K</span>
+                            <span class="date">Jul 15 2025</span>
+                            <span class="filename">simplefolio.html</span>
+                        </div>
+                        <div class="project-item" data-project="extension-manager">
+                            <span class="permissions">-rwxr-xr-x</span>
+                            <span class="size">1.8K</span>
+                            <span class="date">Jul 19 2025</span>
+                            <span class="filename">extension_manager.dat</span>
+                        </div>
+                        <div class="project-item" data-project="huddle-landing">
+                            <span class="permissions">-rwxr-xr-x</span>
+                            <span class="size">3.2K</span>
+                            <span class="date">Jul 22 2025</span>
+                            <span class="filename">huddle-landing.exe</span>
+                        </div>
+                    </div>
+
+                    <!-- Project Details Modal -->
+                    <div id="projectModal" class="project-modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="modal-title">cat project_details.txt</span>
+                                <span class="modal-close">&times;</span>
+                            </div>
+                            <div id="projectDetails" class="modal-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section skills-section">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control close"></span>
+                        <span class="control minimize"></span>
+                        <span class="control maximize"></span>
+                    </div>
+                    <div class="terminal-title">cat skills.txt</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="skills-content">
+                        <div class="skill-category">
+                            <div class="category-title"># Frontend Development</div>
+                            <div class="skill-items">
+                                <div class="skill-item">
+                                    <span class="skill-name">HTML5/CSS3</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="100"></div>
+                                    </div>
+                                    <span class="skill-level">100%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">JavaScript/ES6+</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="100"></div>
+                                    </div>
+                                    <span class="skill-level">100%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">React.js</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="45"></div>
+                                    </div>
+                                    <span class="skill-level">55%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <div class="category-title"># Backend Development</div>
+                            <div class="skill-items">
+                                <div class="skill-item">
+                                    <span class="skill-name">Node.js</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="10"></div>
+                                    </div>
+                                    <span class="skill-level">10%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Python</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="5"></div>
+                                    </div>
+                                    <span class="skill-level">5%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">SQL/NoSQL</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="10"></div>
+                                    </div>
+                                    <span class="skill-level">10%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <div class="category-title"># Security & AI</div>
+                            <div class="skill-items">
+                                <div class="skill-item">
+                                    <span class="skill-name">Ethical Hacking</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="70"></div>
+                                    </div>
+                                    <span class="skill-level">70%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Machine Learning</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="5"></div>
+                                    </div>
+                                    <span class="skill-level">5%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Cybersecurity</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="85"></div>
+                                    </div>
+                                    <span class="skill-level">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control close"></span>
+                        <span class="control minimize"></span>
+                        <span class="control maximize"></span>
+                    </div>
+                    <div class="terminal-title">ping damiandev.vercel.app</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="ping-output">
+                        <div class="ping-line">PING damiandev.vercel.app (192.168.1.100): 56 data bytes</div>
+                        <div id="pingResults" class="ping-results"></div>
+                    </div>
+
+                    <form action="https://formspree.io/f/xldlpenw" method="post" id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label class="form-label">$ echo "name" >></label>
+                            <input type="text" name="name" class="form-input" placeholder="your_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">$ echo "email" >></label>
+                            <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">$ cat message.txt</label>
+                            <textarea name="message" class="form-textarea" placeholder="Type your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">
+                            <span class="btn-text">./send_message.sh</span>
+                            <span class="btn-cursor">_</span>
+                        </button>
+                        <input type="text" name="_gotcha" style="display:none"/>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Console -->
+        <div id="console" class="interactive-console">
+            <div class="console-header">
+                <span class="console-title">Interactive Terminal</span>
+                <button id="consoleToggle" class="console-toggle">_</button>
+            </div>
+            <div class="console-body">
+                <div id="consoleOutput" class="console-output"></div>
+                <div class="console-input-line">
+                    <span class="console-prompt">root@damian:~$ </span>
+                    <input type="text" id="consoleInput" class="console-input" placeholder="Type 'help' for available commands...">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="public/main.js"></script>
+</body>
+</html>
