@@ -541,30 +541,49 @@ function startPingAnimation() {
 }
 
 // Contact Form
+// Contact Form
 function handleContactForm(e) {
     e.preventDefault();
 
-    const submitBtn = e.target.querySelector('.form-submit');
+    const form = e.target;
+    const submitBtn = form.querySelector('.form-submit');
     const originalText = submitBtn.innerHTML;
 
-    // Simulate sending
     submitBtn.innerHTML = '<span class="btn-text">Sending...</span><span class="btn-cursor">_</span>';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-        // Simulate success
-        submitBtn.innerHTML = '<span class="btn-text">Message sent!</span><span class="btn-cursor">_</span>';
-        submitBtn.style.color = 'var(--neon-green)';
+    const formData = new FormData(form);
 
+    fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            submitBtn.innerHTML = '<span class="btn-text">Message sent!</span><span class="btn-cursor">_</span>';
+            submitBtn.style.color = 'var(--neon-green)';
+            form.reset();
+        } else {
+            throw new Error("Network response was not ok");
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        submitBtn.innerHTML = '<span class="btn-text">Error sending</span><span class="btn-cursor">_</span>';
+        submitBtn.style.color = 'red';
+    })
+    .finally(() => {
         setTimeout(() => {
-            // Reset form
-            e.target.reset();
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
             submitBtn.style.color = '';
         }, 2000);
-    }, 2000);
+    });
 }
+
 
 // Scroll Animations
 function setupScrollAnimations() {
